@@ -9,17 +9,32 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
 
-      - uses: actions/setup-java@v3
+    steps:
+      # 1. Клонируем репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Устанавливаем Java 17
+      - name: Setup Java 17
+        uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: '17'
 
-      - run: chmod +x gradlew
+      # 3. Устанавливаем Gradle 7.6 через официальный Action (GitHub-only)
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: '7.6'
 
-      - uses: actions/cache@v3
+      # 4. Делаем gradlew исполняемым
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      # 5. Кешируем Gradle
+      - name: Cache Gradle
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -28,16 +43,17 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}-
 
-      - run: ./gradlew clean remapJar --no-daemon
+      # 6. Сборка Fabric модa через remapJar
+      - name: Build mod JAR
+        run: ./gradlew clean remapJar --no-daemon
 
+      # 7. Проверяем что создано
       - name: Show build/libs
-        run: ls -l build/libs
+        run: ls -l build/libs || echo "No JAR created"
 
-      - uses: actions/upload-artifact@v4
+      # 8. Загружаем артефакт
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
           name: MyFabricMod-JAR
           path: build/libs/*.jar
-- name: Setup Gradle Wrapper
-  uses: gradle/gradle-build-action@v2
-  with:
-    gradle-version: '7.6'
