@@ -29,7 +29,8 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+// Настройка jar, чтобы Loom создал .jar
 jar {
-    archiveBaseName.set("MyFabricMod")   // имя будущего jar
+    archiveBaseName.set("MyFabricMod")
     archiveVersion.set("1.0.0")
 }
