@@ -37,3 +37,7 @@ jobs:
         with:
           name: MyFabricMod-JAR
           path: build/libs/*.jar
+- name: Setup Gradle Wrapper
+  uses: gradle/gradle-build-action@v2
+  with:
+    gradle-version: '7.6'
