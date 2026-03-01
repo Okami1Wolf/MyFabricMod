@@ -40,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MyFabricMod-JAR
-          path: build/libs/*.jar
+          path: build/libs/MyFabricMod-1.0.0.jar
