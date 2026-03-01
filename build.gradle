@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.example' // замени на свой пакет
+group = 'com.example'
 version = '1.0.0'
 
 java {
@@ -27,18 +27,4 @@ dependencies {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-}
-
-jar {
-    from("LICENSE") // если есть лицензия
-    manifest {
-        attributes(
-            "Specification-Title": project.name,
-            "Specification-Vendor": "YourName",
-            "Specification-Version": project.version,
-            "Implementation-Title": project.name,
-            "Implementation-Version": project.version,
-            "Implementation-Vendor": "YourName"
-        )
-    }
 }
