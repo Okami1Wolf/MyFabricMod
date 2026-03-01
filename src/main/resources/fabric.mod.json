@@ -2,16 +2,18 @@
   "schemaVersion": 1,
   "id": "myfabricmod",
   "version": "1.0.0",
-  "name": "My Fabric Mod",
-  "description": "Простой тестовый мод на Fabric 1.16.5",
+  "name": "ChatEnhancer",
+  "description": "Увеличенный чат с фильтрацией и настройками цвета/размера",
   "authors": ["YourName"],
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
-    "main": ["com.example.myfabricmod.ModMain"]
+    "main": ["com.example.myfabricmod.ModMain"],
+    "client": ["com.example.myfabricmod.ModMain$Client"]
   },
   "depends": {
     "fabricloader": ">=0.12.5",
-    "minecraft": "1.16.5"
+    "minecraft": "1.16.5",
+    "fabric": "*"
   }
 }
