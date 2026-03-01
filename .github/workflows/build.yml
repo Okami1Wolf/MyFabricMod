@@ -9,22 +9,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Setup Java 17
-        uses: actions/setup-java@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: '17'
-
-      - name: Make gradlew executable
-        run: chmod +x gradlew
-
-      - name: Cache Gradle
-        uses: actions/cache@v3
+      - run: chmod +x gradlew
+      - uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -32,15 +24,10 @@ jobs:
           key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             gradle-${{ runner.os }}-
-
-      - name: Build mod JAR
-        run: ./gradlew clean remapJar --no-daemon
-
+      - run: ./gradlew clean remapJar --no-daemon
       - name: Show build/libs
-        run: ls -l build/libs   # проверяем, что файл jar реально создан
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        run: ls -l build/libs
+      - uses: actions/upload-artifact@v4
         with:
           name: MyFabricMod-JAR
           path: build/libs/*.jar
