@@ -1,4 +1,4 @@
-name: Build 1.16.5 Mod
+name: Build Fabric 1.16.5 Mod
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Setup Java 17
@@ -20,10 +20,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Grant execute permission
+      - name: Make gradlew executable
         run: chmod +x gradlew
 
-      - name: Cache Gradle dependencies
+      - name: Cache Gradle
         uses: actions/cache@v3
         with:
           path: |
@@ -35,6 +35,9 @@ jobs:
 
       - name: Build mod JAR
         run: ./gradlew clean remapJar --no-daemon
+
+      - name: Show build/libs
+        run: ls -l build/libs   # проверяем, что файл jar реально создан
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
