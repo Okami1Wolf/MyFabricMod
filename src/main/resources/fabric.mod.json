@@ -3,7 +3,7 @@
   "id": "myfabricmod",
   "version": "1.0.0",
   "name": "MyFabricMod",
-  "description": "Minimal Fabric mod",
+  "description": "Minimal Fabric mod for testing",
   "authors": ["YourName"],
   "license": "MIT",
   "environment": "*",
