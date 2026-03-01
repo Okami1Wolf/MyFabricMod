@@ -33,5 +33,11 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}-
 
-      - name: Build mod
+      - name: Build mod JAR
         run: ./gradlew clean build --no-daemon
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: MyFabricMod-JAR
+          path: build/libs/*.jar
