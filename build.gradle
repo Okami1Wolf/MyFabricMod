@@ -30,6 +30,6 @@ tasks.withType(JavaCompile) {
 }
 
 jar {
-    archiveBaseName.set("MyFabricMod")
+    archiveBaseName.set("MyFabricMod")   // имя будущего jar
     archiveVersion.set("1.0.0")
 }
