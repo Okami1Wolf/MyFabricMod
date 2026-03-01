@@ -3,10 +3,6 @@
   "id": "myfabricmod",
   "version": "1.0.0",
   "name": "MyFabricMod",
-  "description": "Minimal Fabric mod for testing",
-  "authors": ["YourName"],
-  "license": "MIT",
-  "environment": "*",
   "entrypoints": {
     "main": ["com.example.myfabricmod.ModMain"]
   },
